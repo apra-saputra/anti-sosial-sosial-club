@@ -14,13 +14,23 @@ module.exports = (sequelize, DataTypes) => {
       Post.belongsTo(models.Profile)
       Post.belongsTo(models.Tag)
     }
+
+    static runningPost(postId, modelTag){
+      const option = {include: {model: modelTag},where:{}}
+      if(postId){
+          option.where.id = postId
+      }
+      return Post.findOne( option )
+    }
   }
   Post.init({
     title: DataTypes.STRING,
     content: DataTypes.TEXT,
     imageUrl: DataTypes.STRING,
     ProfileId: DataTypes.INTEGER,
-    TagId: DataTypes.INTEGER
+    TagId: DataTypes.INTEGER,
+    createdAt: DataTypes.DATE,
+    updatedAt: DataTypes.DATE
   }, {
     sequelize,
     modelName: 'Post',

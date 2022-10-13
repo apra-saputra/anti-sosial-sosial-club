@@ -11,7 +11,7 @@ class Help {
   static validate(req,res, next){
     const error = `please login first`
     if(!req.session.user) {
-      res.redirect(`/?error=${error}`)
+      res.redirect(`/?err=${error}`)
     } else {
       next()
     }

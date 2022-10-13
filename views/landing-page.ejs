@@ -7,7 +7,7 @@
 <body>
     <nav class="navbar navbar-expand-lg bg-light">
         <div class="container-fluid">
-          <a class="navbar-brand" href="#" disable>Navbar</a>
+          <a class="navbar-brand" href="/" disable>M.R. Media</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -15,22 +15,22 @@
       </nav>
         
     <section class="container ">
-      <% if (err) { %>
-        <div class="alert alert-danger" role="alert">
-          <%= err %> 
-        </div>
-      <% } %>
         <div class="row">
             <div class="col-8 align-self-center mt-4">
                 <h1>Movie Review Media</h1>
                 <p>
                     <h4>Do you wanna to discuss about movie ?</h4>
                 </p>
-                <div class="">
-                    <img src="../public/png-transparent-popcorn-movie-film-popcorn-the-film-film.png" style="height: 500px; width:500px";>
+                <div class="mt-5">
+                    <img src="https://lajoyalink.com/wp-content/uploads/2018/03/Movie.jpg" style="height: 350px; width:500px";>
                 </div>
             </div>
             <div class="col-4 align-self-center">
+              <% if (err) { %>
+                <div class="alert alert-danger" role="alert">
+                  <%= err %> 
+                </div>
+              <% } %>
                 <form action="/login" method="post">
                     <div class="mb-3">
                       <label for="username" class="form-label">Username</label>

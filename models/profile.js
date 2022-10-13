@@ -42,7 +42,7 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       validate: {
         is17YearOld(value){
-          if(this.validateAge(value)){
+          if(this.isAge(value)){
             throw new Error(`Your age must be higher than 17th years old!`)
           }
         }

@@ -21,7 +21,7 @@ class UserController {
     .then((user) => {
       const firstName =  "first name"
       const lastName = "last name"
-      const dateOfBirth = "01/01/1999"
+      const dateOfBirth = "01/01/1900"
       const gender = "Male"
       const phoneNumber = "133456798"
       const imageUrl = "http://placekitten.com/200/300"

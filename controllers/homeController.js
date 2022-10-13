@@ -9,7 +9,7 @@ class HomeController {
         let profile;
         let tags;
 
-        const option = {include: {model: Tag}}
+        const option = {include: {model: Tag}, order:[['createdAt','DESC']]}
 
         if(TagId){
             option.where = { TagId: TagId}
@@ -50,16 +50,9 @@ class HomeController {
 
     static getUpdatePost(req,res){
         const {postId} = req.params
-        Post.findOne()
         const {id} = req.session.user
         let profile;
         let tags;
-
-        const option = {include: {model: Tag},where:{}}
-
-        if(postId){
-            option.where.id = postId
-        }
         
         Profile.findOne({where: {UserId : id}})
         .then(resProfile=> {
@@ -68,7 +61,7 @@ class HomeController {
         })
         .then(resultTags=>{
             tags = resultTags
-            return Post.findOne( option )
+            return Post.runningPost(postId, Tag)
         })   
         .then(post =>{
             res.render('edit-post',{post, profile, tags})
