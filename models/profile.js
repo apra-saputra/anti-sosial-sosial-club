@@ -15,6 +15,11 @@ module.exports = (sequelize, DataTypes) => {
       Profile.hasMany(models.Post)
       
     }
+
+    // get privacyNumber(){
+    //   this.phoneNumber.split(' ')
+    //   return this.phoneNumber.
+    // }
   }
   Profile.init({
     firstName: DataTypes.STRING,

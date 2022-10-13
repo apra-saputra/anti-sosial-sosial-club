@@ -15,69 +15,65 @@
                     <!-- profile -->
                     <div class="card mb-3" style="max-width: 540px;">
                         <div class="row g-0">
-                          <div class="col-md-4">
-                            <img src="..." class="img-fluid rounded-start" alt="...">
-                          </div>
-                          <div class="col-md-8">
-                            <div class="card-body">
-                              <h5 class="card-title">Card title</h5>
-                              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                            <div class="col-md-4">
+                                <img src="<%= profile.imageUrl %>" class="img-fluid rounded-start" alt="...">
                             </div>
-                          </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                <h5 class="card-title"><%= profile.firstName %> <%= profile.lastName %></h5>
+                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <!-- profile end-->
                 </div>
-                <div class="col-8 text-center fit-content">            
-                    <div class="form-floating fit-content">
-                    <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
-                    <label for="floatingTextarea2">comment</label>
-                    <input type="submit" class="text-start mt-1 btn btn-primary" value="sumit">
-                    </div>
+                <div class="col-8 text-center fit-content"> 
+                    <form action="">
+                        <div class="form-floating fit-content">
+                        <textarea class="form-control" placeholder="Leave a description here" id="floatingTextarea2" style="height: 80%"></textarea>
+                        <label for="floatingTextarea2">Write here</label>
+                        <div class="mt-2">
+                            <select class="form-select form-select-sm">
+                                <option value="" selected>Open this select menu</option>
+                                <% tags.forEach(el => { %>
+                                    <option value="<%= el.id %>"><%= el.name %> </option>
+                                <% }) %>
+                            </select>
+                        </div>
+                        <div class="container-fluid text-end" >
+                            <input type="submit" class="text-start mt-1 btn btn-outline-primary" value="posting">
+                        </div>
+                        </div>
+                    </form>           
                 </div>
             </div>
         </div>
         <div class="mt-2" style="border-bottom:1px solid"></div>
         <table class="table">
             <tbody>
-                <tr>
-                    <div class="row align-items-center mt-2">
-                        <!-- posts -->
-                        <div class="col-4">
-                            <!-- profile -->
-                            <h1 class="">ImgURL</h1>
-                        </div>
-                        <div class="col-8">
-                          <div class="card text-end" style="width: 100%;">
-                              <div class="card-body">
-                                <h5 class="card-title">Special title treatment</h5>
-                                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                                <a href="" class="btn btn-primary">Go somewhere</a>
-                                  <a href="" class="btn btn-danger">Delete</a>
-                              </div>
+                <% posts.forEach(el => { %>
+                    <tr>
+                        <div class="row align-items-center mt-2">
+                            <!-- posts -->
+                            <div class="col-4">
+                                <!-- profile -->
+                                <h1 class=""><img src="<%= el.imageUrl %>" alt=""></h1>
+                            </div>
+                            <div class="col-8">
+                              <div class="card text-end" style="width: 100%;">
+                                  <div class="card-body">
+                                    <h5 class="card-title"><%= el.title %> </h5>
+                                    <p class="card-text"><%= el.content %></p>
+                                    <p class="card-text"><%= el.createdAt %></p>
+                                        <a href="" class="btn btn-outline-success">Edit</a>
+                                        <a href="" class="btn btn-danger">Delete</a>
+                                  </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </tr>
-                <tr>
-                    <div class="row align-items-center mt-2">
-                        <!-- posts -->
-                        <div class="col-4">
-                            <!-- profile -->
-                            <h1 class="">ImgURL</h1>
-                        </div>
-                        <div class="col-8">
-                            <div class="card text-end" style="width: 100%;">
-                                <div class="card-body">
-                                  <h5 class="card-title">Special title treatment</h5>
-                                  <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                                  <a href="" class="btn btn-primary">Go somewhere</a>
-                                  <a href="" class="btn btn-danger">Delete</a>
-                                </div>
-                              </div>
-                        </div>
-                    </div>
-                </tr>
+                    </tr>
+                <% }) %>
             </tbody>
           </table>
     </section>
