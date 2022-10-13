@@ -1,0 +1,31 @@
+{
+  "name": "anti-sosial-sosial-club",
+  "version": "1.0.0",
+  "description": "Pair Project",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/apra-saputra/anti-sosial-sosial-club.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/apra-saputra/anti-sosial-sosial-club/issues"
+  },
+  "homepage": "https://github.com/apra-saputra/anti-sosial-sosial-club#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "ejs": "^3.1.8",
+    "express": "^4.18.2",
+    "express-session": "^1.17.3",
+    "pg": "^8.8.0",
+    "sequelize": "^6.25.0"
+  },
+  "devDependencies": {
+    "sequelize-cli": "^6.5.1"
+  }
+}
