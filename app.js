@@ -1,16 +1,24 @@
-const express = require("express");
-const app = express()
-const router = require('./routes')
+const express = require('express');
+const router = require('./routes');
+const app = express();
+const session = require('express-session')
+const port = 3000;
 
 app.set('view engine', 'ejs')
-app.use(express.static('public'))
-app.use(express.urlencoded({ extended:false }))
-app.use(router)
+app.use(express.urlencoded({extended: false}))
 
-// app.get('/',(req,res)=>{
-//     res.render('homepage')
-// })
 
-app.listen(3000,()=>{
-    console.log('listening port 3000')
+app.use(session({
+  secret: 'secret access',
+  resave: false,
+  saveUninitialized: false,
+  cookie: { 
+    secure: false,
+    sameSite: true }
+}))
+app.use('/', router)
+
+
+app.listen(port, () => {
+  console.log("Aplicable Run at http://localhost:", port);
 })
