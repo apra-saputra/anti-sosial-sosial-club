@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('./partials/head')  %>
+    <title>Document</title>
+</head>
+<body>
+    <%- include('./partials/navbar')  %> 
+
+    <!-- content -->
+    <section class="container align-items-center mt-4">
+        <div class="container-fluid">
+            <div class="row align-items-center">
+                <div class="col-4">
+                    <!-- profile -->
+                    <div class="card mb-3" style="max-width: 540px; height: 100%;">
+                        <a href="/profile/<%= profile.id %>" style="text-decoration: none; color: black;">
+                        <div class="row g-0">
+                            <div class="col-md-4">
+                                <img src="<%= profile.imageUrl %>" class="img-fluid rounded-start" alt="...">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                <h5 class="card-title"><%= profile.firstName %> <%= profile.lastName %></h5>
+                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                                </div>
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                    <!-- profile end-->
+                </div>
+                <div class="col-8 text-center fit-content"> 
+                    <!-- form -->
+                    <form action="/home/edit/<%= post.id %>" method="post">
+                        <div class="form-floating">
+                            <input type="text" name="title" value="<%= post.title %> " class="form-control" id="floatingInput" placeholder="title" style="height: 50%;">
+                            <label for="floatingInput">Title</label>
+                        </div>
+                        <div class="form-floating fit-content mt-1">
+                        <textarea name="content" class="form-control" placeholder="Leave a description here" id="floatingTextarea2" style="height: 80%"><%= post.content %> </textarea>
+                        <label for="floatingTextarea2">Write here</label>
+                        <div class="mt-1">
+                            <select name="TagId" class="form-select form-select-sm">
+                                <option value="" >Open this select menu</option>
+                                <% tags.forEach(el => { %>
+                                    <option value="<%= el.id %>" <%= post.TagId === el.id ? "selected":"" %>><%= el.name %> </option>
+                                <% }) %>
+                            </select>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center mt-1">
+                            <div class="input-group me-2">
+                                <input type="text" name="imageUrl" value="<%= post.imageUrl %> " class="form-control" placeholder="Movie =Image Url">
+                                <span class="input-group-text" id="basic-addon2">example.com/image.png</span>
+                            </div>
+                            <input type="submit" class="btn btn-outline-primary" value="posting">
+                        </div>
+                    </form> 
+                    <!-- form end-->          
+                </div>
+            </div>
+        </div>
+        <div class="mt-3 mb-3" style="border-bottom:1px solid"></div>
+    <!-- <div class="mt-3 mb-3" style="border-bottom:1px solid"></div> -->
+    <!-- content end -->
+    <%- include('./partials/script')  %> 
+</body>
+</html>
