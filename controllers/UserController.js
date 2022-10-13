@@ -3,12 +3,13 @@ const bcrypt = require('bcryptjs');
 
 class UserController {
   static landingpage(req,res){
-    const {error} = req.query
-    res.render('landing-page', {error})
+    const {err} = req.query
+    res.render('landing-page', {err})
   }
 
   static getRegister(req, res) {
-    res.render('register')
+    const {err} = req.query
+    res.render('register',{err})
   }
 
   static postRegister(req, res) {
@@ -21,7 +22,7 @@ class UserController {
       const firstName =  "first name"
       const lastName = "last name"
       const dateOfBirth = "01/01/1999"
-      const gender = "L"
+      const gender = "Male"
       const phoneNumber = "133456798"
       const imageUrl = "http://placekitten.com/200/300"
       const UserId = user.id
@@ -31,7 +32,13 @@ class UserController {
       res.redirect('/')
     })
     .catch(err => {
-      res.send(err)
+      let error ;
+      if(err.name ==='SequelizeValidationError') {
+        error = err.errors.map(el => el.message)
+      }else {
+        res.send(err)
+      }
+      res.redirect(`/register?err=${error}`)
     })
   }
 
@@ -39,7 +46,6 @@ class UserController {
     const {username, password} = req.body
     User.findOne({where: { username }})
     .then(user => {
-      console.log(user)
       if(user) {
         const validPassword = bcrypt.compareSync(password, user.password);
         if(validPassword) {
@@ -47,20 +53,16 @@ class UserController {
           return res.redirect(`/home`)
         } else {
           const error = `invalid username / password`
-          return res.redirect(`/?error=${error}`)
+          return res.redirect(`/?err=${error}`)
         }
       } else {
         const error = `invalid username / password`
-        return res.redirect(`/?error=${error}`)
+        return res.redirect(`/?err=${error}`)
       }
     })
     .catch(err => {
       res.send(err)
     })
-  }
-
-  static profil(req,res) {
-    res.render('profil')
   }
 
   static getLogout(req, res) {

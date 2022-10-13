@@ -5,9 +5,8 @@ const router = require("express").Router();
 // /home
 router.get('/', Help.validate, HomeController.getHome)
 router.post('/add', Help.validate, HomeController.createPost)
-// router.post('/add', Controller.createStore)
-// router.get('/edit', Controller.getStore)
-// router.post('/edit', Controller.getStore)
-// router.get('/delete', Controller.getFormAddEmployee)
+router.get('/edit/:postId', HomeController.getUpdatePost)
+router.post('/edit/:postId', HomeController.updatePost)
+router.get('/delete/:postId', HomeController.deletePost)
 
 module.exports = router

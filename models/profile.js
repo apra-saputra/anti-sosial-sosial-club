@@ -16,15 +16,38 @@ module.exports = (sequelize, DataTypes) => {
       
     }
 
-    // get privacyNumber(){
-    //   this.phoneNumber.split(' ')
-    //   return this.phoneNumber.
-    // }
+    isAge(dateOfBirth) {
+      let age = new Date().getFullYear() - new Date(this.dateOfBirth).getFullYear()
+      if( age > 17 ){
+        return false
+      }
+      return true
+    }
+
+    get newAge() {
+      let age = new Date().getFullYear() - new Date(this.dateOfBirth).getFullYear()
+      return age
+    }
+
+    get formatDate() {
+      return this.dateOfBirth.toISOString().split("T")[0]
+    }
   }
+
   Profile.init({
     firstName: DataTypes.STRING,
     lastName: DataTypes.STRING,
-    dateOfBirth: DataTypes.DATE,
+    dateOfBirth: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      validate: {
+        is17YearOld(value){
+          if(this.validateAge(value)){
+            throw new Error(`Your age must be higher than 17th years old!`)
+          }
+        }
+      }
+    },
     gender: DataTypes.STRING,
     phoneNumber: DataTypes.STRING,
     imageUrl: DataTypes.STRING,

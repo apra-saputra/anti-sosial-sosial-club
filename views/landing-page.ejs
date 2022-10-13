@@ -5,9 +5,21 @@
     <title>Selamat Datang di Twitwor</title>
 </head>
 <body>
-    <%- include('./partials/navbar')  %> 
+    <nav class="navbar navbar-expand-lg bg-light">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#" disable>Navbar</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        </div>
+      </nav>
         
     <section class="container ">
+      <% if (err) { %>
+        <div class="alert alert-danger" role="alert">
+          <%= err %> 
+        </div>
+      <% } %>
         <div class="row">
             <div class="col-8 align-self-center mt-4">
                 <h1>Movie Review Media</h1>

@@ -47,6 +47,59 @@ class HomeController {
             res.send(err)
         })     
     }
+
+    static getUpdatePost(req,res){
+        const {postId} = req.params
+        Post.findOne()
+        const {id} = req.session.user
+        let profile;
+        let tags;
+
+        const option = {include: {model: Tag},where:{}}
+
+        if(postId){
+            option.where.id = postId
+        }
+        
+        Profile.findOne({where: {UserId : id}})
+        .then(resProfile=> {
+            profile = resProfile
+            return Tag.findAll({})
+        })
+        .then(resultTags=>{
+            tags = resultTags
+            return Post.findOne( option )
+        })   
+        .then(post =>{
+            res.render('edit-post',{post, profile, tags})
+        })
+        .catch(err => {
+            res.send(err)
+        })
+    }
+
+    static updatePost(req,res){
+        const {postId} = req.params
+        const { title, content, TagId, imageUrl } = req.body
+        Post.update({title, content, TagId, imageUrl},{where:{id:postId}})
+        .then(() =>{
+            res.redirect('/home')
+        })
+        .catch(err => {
+            res.send(err)
+        })
+    }
+
+    static deletePost(req,res){
+        const {postId} = req.params
+        Post.destroy({where: {id: postId}})
+        .then(() =>{
+            res.redirect('/home')
+        })
+        .catch(err => {
+            res.send(err)
+        })
+    }
 }
 
 module.exports = HomeController

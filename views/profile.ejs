@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('./partials/head')  %>
+  <title>Document</title>
+</head>
+<body>
+  <%- include('./partials/navbar')  %> 
+  <div class="container mt-5">
+    <% if (err) { %>
+      <div class="alert alert-danger" role="alert">
+        <%= err %> 
+      </div>
+    <% } %>
+    <div class="card text-center">
+      <div class="card-header" style="text-transform: uppercase;">
+        <strong><%= profile.User.username %></strong>
+      </div>
+      <div class="card-body">
+        <img src="<%= profile.imageUrl %>" alt="photo profile" style="height: 50%; border-radius: 10px;">
+        <h5 class="card-title" style="text-transform: uppercase;"><%= profile.firstName %> - <%= profile.lastName %></h5>
+        <form action="/profile/<%= profile.id %>/update" method="post">
+          <div class="input-group">
+            <span class="input-group-text">First and last name</span>
+            <input type="text" class="form-control" name="firstName" placeholder="First Name" value="<%= profile.firstName %>">
+            <input type="text" class="form-control" name="lastName" placeholder="Last Name" value="<%= profile.lastName %>">
+          </div>
+          <div class="input-group mt-2">
+            <span class="input-group-text">Phone Number, Gender and Date Of Birth</span>
+            <input type="text" class="form-control" name="phoneNumber" placeholder="Phone Number"  value="<%= profile.phoneNumber %>">
+            <select name="gender" class="form-control">
+              <% ['Male','Female'].forEach(e => { %>
+                <option value="<%= e %>" <%= e === profile.gender ? "selected":"" %>><%= e %></option>
+              <% }) %>
+            </select>
+            <input type="date" class="form-control" name="dateOfBirth" placeholder="When do you born" value="<%= profile.formatDate %>">
+          </div>
+         <input type="submit" class="btn btn-outline-success btn-sm mt-2" value="Update">
+        </form>
+      </div>
+      <div class="card-footer text-muted">
+        Phone Number : <%= profile.phoneNumber %> - Age :
+        <%= profile.newAge %> years old
+      </div>
+    </div>
+  </div>
+
+  <%- include('./partials/script')  %> 
+</body>
+</html>

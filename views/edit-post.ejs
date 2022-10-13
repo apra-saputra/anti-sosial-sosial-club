@@ -32,25 +32,25 @@
                 </div>
                 <div class="col-8 text-center fit-content"> 
                     <!-- form -->
-                    <form action="/home/add" method="post">
+                    <form action="/home/edit/<%= post.id %>" method="post">
                         <div class="form-floating">
-                            <input type="text" name="title" class="form-control" id="floatingInput" placeholder="title" style="height: 50%;">
+                            <input type="text" name="title" value="<%= post.title %> " class="form-control" id="floatingInput" placeholder="title" style="height: 50%;">
                             <label for="floatingInput">Title</label>
                         </div>
                         <div class="form-floating fit-content mt-1">
-                        <textarea name="content" class="form-control" placeholder="Leave a description here" id="floatingTextarea2" style="height: 80%"></textarea>
+                        <textarea name="content" class="form-control" placeholder="Leave a description here" id="floatingTextarea2" style="height: 80%"><%= post.content %> </textarea>
                         <label for="floatingTextarea2">Write here</label>
                         <div class="mt-1">
                             <select name="TagId" class="form-select form-select-sm">
-                                <option value="" selected>Open this select menu</option>
+                                <option value="" >Open this select menu</option>
                                 <% tags.forEach(el => { %>
-                                    <option value="<%= el.id %>"><%= el.name %> </option>
+                                    <option value="<%= el.id %>" <%= post.TagId === el.id ? "selected":"" %>><%= el.name %> </option>
                                 <% }) %>
                             </select>
                         </div>
                         <div class="d-flex justify-content-between align-items-center mt-1">
                             <div class="input-group me-2">
-                                <input type="text" name="imageUrl" class="form-control" placeholder="Movie =Image Url">
+                                <input type="text" name="imageUrl" value="<%= post.imageUrl %> " class="form-control" placeholder="Movie =Image Url">
                                 <span class="input-group-text" id="basic-addon2">example.com/image.png</span>
                             </div>
                             <input type="submit" class="btn btn-outline-primary" value="posting">
@@ -61,46 +61,6 @@
             </div>
         </div>
         <div class="mt-3 mb-3" style="border-bottom:1px solid"></div>
-        <!-- main content -->
-        <div class="container text-center mb-4">
-            <div style="border: 1px solid rgba(170, 170, 170, 0.5) ;"></div>
-            <div class="mt-2 mb-2">
-                <a href="/home" type="button" class="btn btn-outline-secondary sm">All</a>
-            <% tags.forEach(el => { %>
-                    <a href="/home?TagId=<%= el.id %> " type="button" class="btn btn-outline-secondary sm"><%= el.name %></a>
-            <% }) %>
-            </div>
-                <div style="border: 1px solid rgba(170, 170, 170, 0.5) ;"></div>
-            </div>
-        </select>
-        <table class="table">
-            <tbody>
-                <% posts.forEach(el => { %>
-                    <tr>
-                        <div class="row align-items-center mt-2">
-                            <!-- posts -->
-                            <div class="col-4">
-                                <!-- profile -->
-                                <h1 class=""><img src="<%= el.imageUrl %>" alt="ada foto" style="max-height: 150px;"></h1>
-                            </div>
-                            <div class="col-8">
-                                <div class="card text-end" style="width: 100%;">
-                                    <div class="card-body">
-                                        <small class="text-muted"><%= el.Tag.name %></small>
-                                        <h5 class="card-title"><%= el.title %> </h5>
-                                        <p class="card-text"><%= el.content %></p>
-                                        <small class="text-muted"><%= Help.dateAgo(el.createdAt) %></small>
-                                            <a href="/home/edit/<%= el.id %>" class="btn btn-outline-success btn-sm">Edit</a>
-                                            <a href="/home/delete/<%= el.id %>" class="btn btn-danger btn-sm">Delete</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </tr>
-                <% }) %>
-            </tbody>
-        </table>
-    </section>
     <!-- <div class="mt-3 mb-3" style="border-bottom:1px solid"></div> -->
     <!-- content end -->
     <%- include('./partials/script')  %> 
