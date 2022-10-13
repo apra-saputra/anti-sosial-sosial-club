@@ -34,7 +34,8 @@ class UserController {
       if(user) {
         const validPassword = bcrypt.compareSync(password, user.password);
         if(validPassword) {
-          return res.send(`masuk`)
+          req.session.userId = user.id
+          return res.redirect(`/home`)
         } else {
           const error = `invalid username / password`
           return res.redirect(`/login?error=${error}`)
@@ -46,6 +47,24 @@ class UserController {
     })
     .catch(err => {
       res.send(err)
+    })
+  }
+
+  static home(req, res) {
+    res.render(`home`)
+    // res.send(`masuk`)
+  }
+
+  static profil(req,res) {
+    res.render('profil')
+  }
+
+  static getLogout(req, res) {
+    req.session.destroy(err => {
+      if(err) res.send(err)
+      else {
+        res.redirect('/login')
+      }
     })
   }
 }

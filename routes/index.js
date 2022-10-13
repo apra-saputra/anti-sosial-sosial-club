@@ -14,7 +14,30 @@ router.get('/login', UserController.getLogin )
 
 router.post('/login', UserController.postLogin )
 
-// router.use('/stores', routeStore)
-// router.use('/employees', routeEmploy)
+router.get('/logout', UserController.getLogout)
+
+router.use((req, res, next) => {
+  const error = `Please login first`
+  if(!req.session.userId) {
+    res.redirect(`/login?error=${error}`)
+  } else {
+    next()
+  }
+})
+
+const validate = (req,res, next) => {
+  const error = `please login first`
+  if(!req.session.userId) {
+    res.redirect(`/login?error=${error}`)
+  } else {
+    next()
+  }
+}
+
+router.get('/home', validate , UserController.home)
+
+router.get('/profil', validate, UserController.profil)
+
+
 
 module.exports = router
