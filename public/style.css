@@ -1,2 +1,13 @@
-@import "../node_modules/bootstrap/dist/css/bootstrap.css";
-@import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+
+*,body{
+    margin: 0;
+    padding: 0;
+}
+
+section{
+    height: 100vh;
+}
+
+.fit-content{
+    width: 100%;
+}
