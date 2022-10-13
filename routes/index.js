@@ -12,7 +12,6 @@ router.post('/register', UserController.postRegister )
 router.post('/login', UserController.postLogin )
 router.get('/logout', UserController.getLogout)
 
-
 router.use(Help.validate)
 router.use('/home', home)
 router.use('/profile', profile)

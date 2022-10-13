@@ -5,8 +5,8 @@ const router = require("express").Router();
 // /home
 router.get('/', Help.validate, HomeController.getHome)
 router.post('/add', Help.validate, HomeController.createPost)
-router.get('/edit/:postId', HomeController.getUpdatePost)
-router.post('/edit/:postId', HomeController.updatePost)
-router.get('/delete/:postId', HomeController.deletePost)
+router.get('/edit/:postId', Help.validate, HomeController.getUpdatePost)
+router.post('/edit/:postId', Help.validate, HomeController.updatePost)
+router.get('/delete/:postId', Help.validate, HomeController.deletePost)
 
 module.exports = router
