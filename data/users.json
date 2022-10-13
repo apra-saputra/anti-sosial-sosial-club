@@ -2,28 +2,29 @@
     "username":"sgrolmann0",
     "email":"skenwrick0@devhub.com",
     "password":"48hlPt4csD1",
-    "isActive":true
+    "role":"user"
 },
 {
     "username":"aafonso1",
     "email":"dbanting1@toplist.cz",
     "password":"sz8md1yVq08N",
-    "isActive":true},
+    "role":"user"
+},
 {
     "username":"rledgister2",
     "email":"rshambrook2@google.com",
     "password":"HO7b9MZ",
-    "isActive":false
+    "role":"user"
 },
 {
     "username":"dtabram3",
     "email":"adunseath3@imdb.com",
     "password":"Q0ye07tcTi",
-    "isActive":false
+    "role":"user"
 },
 {
     "username":"epierton4",
     "email":"dleydon4@dagondesign.com",
     "password":"m9aptCKOL",
-    "isActive":false
+    "role":"user"
 }]
