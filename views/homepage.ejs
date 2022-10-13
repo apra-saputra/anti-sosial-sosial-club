@@ -89,7 +89,7 @@
                                         <small class="text-muted"><%= el.Tag.name %></small>
                                         <h5 class="card-title"><%= el.title %> </h5>
                                         <p class="card-text"><%= el.content %></p>
-                                        <small class="text-muted"><%= el.createdAt %></small>
+                                        <small class="text-muted"><%= Help.dateAgo(el.createdAt) %></small>
                                             <a href="" class="btn btn-outline-success btn-sm">Edit</a>
                                             <a href="" class="btn btn-danger btn-sm">Delete</a>
                                     </div>

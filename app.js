@@ -14,7 +14,9 @@ app.use(session({
   saveUninitialized: false,
   cookie: { 
     secure: false,
-    sameSite: true }
+    sameSite: true,
+    maxAge: 60*60*1000  
+  }
 }))
 app.use('/', router)
 

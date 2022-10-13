@@ -1,10 +1,11 @@
 const { Post,Profile,Tag,User } = require('../models')
 const { Op } = require('sequelize')
+const Help = require('../helpers')
 
 class HomeController {
     static getHome(req,res){
         const { TagId } = req.query
-
+        const {id} = req.session.user
         let profile;
         let tags;
 
@@ -14,7 +15,7 @@ class HomeController {
             option.where = { TagId: TagId}
         }
         
-        Profile.findOne({where: {UserId : 1}})
+        Profile.findOne({where: {UserId : id}})
         .then(resProfile=> {
             profile = resProfile
             return Tag.findAll({})
@@ -24,7 +25,7 @@ class HomeController {
             return Post.findAll( option )
         })   
         .then(posts =>{
-            res.render('homepage',{posts, profile, tags})
+            res.render('homepage',{posts, profile, tags, Help })
         })
         .catch(err => {
             res.send(err)
@@ -32,10 +33,19 @@ class HomeController {
     }
 
     static createPost(req,res){
-        req.session.UserId
-        console.log(req.body)
-        Post.create({})
-        res.redirect('/home')
+        const {id} = req.session.user
+        const { title, content, TagId, imageUrl } = req.body
+        let ProfileId;
+        Profile.findOne({where: {UserId : id}})
+        .then(profile=>{
+            ProfileId = profile.id
+            return Post.create({title, content, TagId, imageUrl,ProfileId})
+        }).then(()=>{
+            res.redirect('/home')
+        })
+        .catch(err => {
+            res.send(err)
+        })     
     }
 }
 
