@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('./partials/head')  %> 
+    <title>Selamat Datang di Twitwor</title>
+</head>
+<body>
+    <%- include('./partials/navbar')  %> 
+        
+    <section class="container ">
+        <div class="row">
+            <div class="col-8 align-self-center mt-4">
+                <h1>Movie Review Media</h1>
+                <p>
+                    <h4>Do you wanna to discuss about movie ?</h4>
+                </p>
+                <div class="">
+                    <img src="../public/png-transparent-popcorn-movie-film-popcorn-the-film-film.png" style="height: 500px; width:500px";>
+                </div>
+            </div>
+            <div class="col-4 align-self-center">
+                <form>
+                    <div class="mb-3">
+                      <label for="username" class="form-label">Email address</label>
+                      <input type="text" name="username" class="form-control" id="username">
+                    </div>
+                    <div class="mb-3">
+                      <label for="password" class="form-label">Password</label>
+                      <input type="password" name="password" class="form-control" id="password">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Login</button>
+                    <a href="/register" class="btn btn-outline-primary">Sign Up</a>
+                </form>          
+            </div>
+        </div>
+    </section>
+    <%- include('./partials/footer')  %> 
+</body>
+</html>
