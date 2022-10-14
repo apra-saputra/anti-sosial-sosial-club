@@ -8,13 +8,10 @@ section{
     height: 100vh;
 }
 
-.fit-content{
-    width: 100%;
-}
-
 .fit-footer{
     text-decoration: none; 
     text-transform: uppercase;
     font-weight: bold; 
     color: black;
+    font-size: 2,4rem;
 }
