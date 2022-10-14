@@ -21,6 +21,6 @@ app.use(session({
 app.use('/', router)
 
 
-app.listen(port, () => {
-  console.log("Aplicable Run at http://localhost:", port);
+app.listen(process.env.PORT , () => {
+  console.log("Aplicable Run at http://localhost:", PORT);
 })
